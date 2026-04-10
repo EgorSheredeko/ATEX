@@ -52,7 +52,7 @@ const InteractiveCard = ({ children, className = "", delay = 0, isDark, forceDar
   );
 };
 
-export default function AtexFinalScrollFix() {
+export default function AtexFinalScale85() {
   const [theme, setTheme] = useState<'light' | 'dark'>('dark');
   const [scale, setScale] = useState(1);
   const [wrapperHeight, setWrapperHeight] = useState('auto');
@@ -64,18 +64,18 @@ export default function AtexFinalScrollFix() {
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
-      const newScale = width < BASE_WIDTH ? (width / BASE_WIDTH) * 0.75 : 1;
+      // ОБНОВЛЕННЫЙ МАСШТАБ: 0.85 (85%)
+      const newScale = width < BASE_WIDTH ? (width / BASE_WIDTH) * 0.85 : 1;
       setScale(newScale);
 
       if (containerRef.current) {
         const contentHeight = containerRef.current.offsetHeight;
-        // Принудительно задаем высоту, чтобы скролл понимал границы
         setWrapperHeight(`${contentHeight * newScale}px`);
       }
     };
 
     window.addEventListener('resize', handleResize);
-    const timer = setTimeout(handleResize, 300); // Чуть больше задержка для точного замера
+    const timer = setTimeout(handleResize, 300); 
     return () => {
       window.removeEventListener('resize', handleResize);
       clearTimeout(timer);
@@ -97,7 +97,7 @@ export default function AtexFinalScrollFix() {
       style={{ 
         height: wrapperHeight, 
         minHeight: '100vh', 
-        overflowY: 'visible', // Позволяем контенту выходить за рамки родителя для системного скролла
+        overflowY: 'visible', 
         overflowX: 'hidden' 
       }}
     >
@@ -130,7 +130,7 @@ export default function AtexFinalScrollFix() {
               {['Главная', 'О колледже', 'Специальности', 'Контакты'].map((name) => (
                 <a key={name} href="#" className={`text-[13px] uppercase font-black tracking-[0.2em] transition-all hover:text-[#0047FF] ${isDark ? 'text-white opacity-40 hover:opacity-100' : 'text-slate-900 opacity-50 hover:opacity-100'}`}>{name}</a>
               ))}
-              <button onClick={() => setTheme(isDark ? 'light' : 'dark')} className={`p-4 rounded-2xl border transition-all ${isDark ? 'bg-slate-800 border-slate-700 text-yellow-400' : 'bg-white border-slate-200 text-slate-600 shadow-sm'}`}>
+              <button onClick={() => setTheme(isDark ? 'light' : 'dark')} className={`p-4 rounded-2xl border transition-all ${isDark ? 'bg-slate-800 border-slate-700 text-yellow-400 shadow-lg' : 'bg-white border-slate-200 text-slate-600 shadow-sm'}`}>
                 {isDark ? <Sun size={26} /> : <Moon size={26} />}
               </button>
             </nav>
