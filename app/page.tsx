@@ -52,7 +52,7 @@ const InteractiveCard = ({ children, className = "", delay = 0, isDark, forceDar
   );
 };
 
-export default function AtexFinalScale85() {
+export default function AtexFinalScale95() {
   const [theme, setTheme] = useState<'light' | 'dark'>('dark');
   const [scale, setScale] = useState(1);
   const [wrapperHeight, setWrapperHeight] = useState('auto');
@@ -64,8 +64,8 @@ export default function AtexFinalScale85() {
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
-      // ОБНОВЛЕННЫЙ МАСШТАБ: 0.85 (85%)
-      const newScale = width < BASE_WIDTH ? (width / BASE_WIDTH) * 0.85 : 1;
+      // МАСШТАБ ТЕПЕРЬ 95% ДЛЯ МАКСИМАЛЬНОГО РАЗМЕРА
+      const newScale = width < BASE_WIDTH ? (width / BASE_WIDTH) * 0.95 : 1;
       setScale(newScale);
 
       if (containerRef.current) {
@@ -81,15 +81,6 @@ export default function AtexFinalScale85() {
       clearTimeout(timer);
     };
   }, [theme]);
-
-  const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
-    e.preventDefault();
-    const elem = document.getElementById(id);
-    if (elem) {
-      const targetPosition = elem.offsetTop * scale;
-      window.scrollTo({ top: targetPosition - (110 * scale), behavior: 'smooth' });
-    }
-  };
 
   return (
     <div 
