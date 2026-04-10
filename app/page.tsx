@@ -52,7 +52,7 @@ const InteractiveCard = ({ children, className = "", delay = 0, isDark, forceDar
   );
 };
 
-export default function AtexFinalScale95() {
+export default function AtexFinalScale100() {
   const [theme, setTheme] = useState<'light' | 'dark'>('dark');
   const [scale, setScale] = useState(1);
   const [wrapperHeight, setWrapperHeight] = useState('auto');
@@ -64,8 +64,8 @@ export default function AtexFinalScale95() {
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
-      // МАСШТАБ ТЕПЕРЬ 95% ДЛЯ МАКСИМАЛЬНОГО РАЗМЕРА
-      const newScale = width < BASE_WIDTH ? (width / BASE_WIDTH) * 0.95 : 1;
+      // МАСШТАБ 100% — ТЕПЕРЬ БЕЗ ПОНИЖАЮЩИХ КОЭФФИЦИЕНТОВ
+      const newScale = width < BASE_WIDTH ? (width / BASE_WIDTH) : 1;
       setScale(newScale);
 
       if (containerRef.current) {
